@@ -1,14 +1,20 @@
 function LoadData() {			
 		d3.csv("./data/Transformed - Population_Income.csv", function(data){
+
+		let options = [...new Set(data.map(d => d.MaxYear))]; 
+		// optionally add .sort() to the end of that line to sort the unique values
+		// alphabetically rather than by insertion order
+
+		d3.select('#my_dataviz')
+  			.selectAll('option')
+    			.data(options)
+  			.enter()
+    			.append('option')
+    			.text(d => d)
+    			.attr('value', d => d);
+
 			//console.log(data);
-			d3.select("#my_dataviz")
-        			.selectAll("p")
-        			.data(d3.map(data, function(d){return d.MaxYear;}).keys())
-        			.enter()
-        			.append("p")
-        			.text(function(d) {
-            				return d.MaxYear;
-        			});
+
 		});
 }
 
