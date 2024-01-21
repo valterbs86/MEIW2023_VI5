@@ -3,7 +3,7 @@ function LoadData() {
 			//console.log(data);
 			d3.select("#my_dataviz")
         			.selectAll("p")
-        			.data(data)
+        			.data(d3.map(data, function(d){return d.MaxYear;}).keys())data(data)
         			.enter()
         			.append("p")
         			.text(function(d) {
