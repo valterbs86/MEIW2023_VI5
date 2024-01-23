@@ -10,6 +10,7 @@ function ReadData()
 
 function WriteData()
 {
+	window.alert('Reading Data...');	
 	ReadData();
 	window.alert(myGlobalVariable);	
 }
