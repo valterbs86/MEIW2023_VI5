@@ -1,18 +1,12 @@
-var dataset=10;
-
-function LoadData() 
+function GetData() 
 {			
-		d3.csv("./data/Transformed - Population_Income.csv", function(data){
-			let dataset = data;
-			//window.alert(dataset);
+		var dataset = d3.csv("./data/Transformed - Population_Income.csv", function(data){
+			return{ data: data}	
 		});
-		
-writeData();
-	
 }
 
-function writeData()
+function WriteData()
 {
-	window.alert(dataset);
+	window.alert(dataset.data);
 	//console.log('test');
 }
