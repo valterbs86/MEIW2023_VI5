@@ -4,14 +4,14 @@ function LoadData()
 {			
 		d3.csv("./data/Transformed - Population_Income.csv", function(data){
 			let dataset = data;
-			window.alert(dataset);
+			//window.alert(dataset);
 		});
 		
-//writeData();
+writeData(dataset);
 	
 }
 
-function writeData()
+function writeData(dataset)
 {
 	window.alert(dataset);
 	//console.log('test');
