@@ -12,6 +12,6 @@ writeData();
 
 function writeData()
 {
-	window.alert('here');
+	window.alert(dataset);
 	//console.log('test');
 }
