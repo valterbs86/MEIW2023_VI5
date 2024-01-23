@@ -7,7 +7,7 @@ function LoadData()
 			window.alert(dataset);
 		});
 		
-writeData();
+//writeData();
 	
 }
 
