@@ -5,7 +5,7 @@ function LoadData() {
 
 		let dataset = data;
 			
-		let options = [...new Set(data.map(d => d.MaxYear))]; 
+		let options = [...new Set(data.dataset(d => d.MaxYear))]; 
 		// optionally add .sort() to the end of that line to sort the unique values
 		// alphabetically rather than by insertion order
 
