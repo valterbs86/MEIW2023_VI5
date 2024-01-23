@@ -1,3 +1,6 @@
+
+
+
 function GetData() 
 {			
 		var dataset = d3.csv("./data/Transformed - Population_Income.csv", function(data){
@@ -7,6 +10,6 @@ function GetData()
 
 function WriteData()
 {
-	window.alert(dataset.data);
+	window.alert(GetData());
 	//console.log('test');
 }
