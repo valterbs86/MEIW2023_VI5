@@ -3,7 +3,7 @@ var dataset=10;
 function LoadData() 
 {			
 		d3.csv("./data/Transformed - Population_Income.csv", function(data){
-			dataset = data;
+			let dataset = data;
 			//window.alert(dataset);
 		});
 		
