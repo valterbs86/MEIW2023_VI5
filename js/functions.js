@@ -1,4 +1,4 @@
-var dataset;
+var dataset=10;
 
 function LoadData() 
 {			
@@ -7,11 +7,11 @@ function LoadData()
 			//window.alert(dataset);
 		});
 		
-writeData(dataset);
+writeData();
 	
 }
 
-function writeData(dataset)
+function writeData()
 {
 	window.alert(dataset);
 	//console.log('test');
