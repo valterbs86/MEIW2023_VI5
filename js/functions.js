@@ -1,10 +1,14 @@
-var dataset = d3.csv("./data/Transformed - Population_Income.csv", function(data){
-	return{ data}	
-});
 
+var myGlobalVariable;
+
+function ReadData()
+{
+	d3.csv("./data/Transformed - Population_Income.csv").then(function(data) {
+  		myGlobalVariable = data;
+	});
+}
 
 function WriteData()
 {
-	let result = dataset();
-	window.alert(GetData());	
+	window.alert(myGlobalVariable);	
 }
