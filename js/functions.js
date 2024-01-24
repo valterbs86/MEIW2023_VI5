@@ -1,20 +1,15 @@
 
-var myGlobalVariable;
-
 function LoadData()
 {
 	window.alert('Loading Data...');	
 	d3.csv("./data/Transformed - Population_Income.csv").then(function(data) {
-  		myGlobalVariable = data;
+		localStorage.setItem('dataset', data)
 	});
-
-	window.alert(myGlobalVariable);
 }
 
-function WriteData()
+function ShowData()
 {
-	window.alert('Loading Data...');	
-	ReadData();
 	window.alert('Output Data...');
-	window.alert(myGlobalVariable);	
+	// localStorage.getItem('dataset');
+	window.alert(localStorage.getItem('dataset'));
 }
