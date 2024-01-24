@@ -1,12 +1,14 @@
 
 var myGlobalVariable;
 
-function ReadData()
+function LoadData()
 {
-	window.alert('Storing Data...');	
+	console.log('Loading Data...');	
 	d3.csv("./data/Transformed - Population_Income.csv").then(function(data) {
   		myGlobalVariable = data;
 	});
+
+	console.log(myGlobalVariable);
 }
 
 function WriteData()
