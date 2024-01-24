@@ -1,7 +1,7 @@
 
 function LoadData()
 {
-	window.alert('Loading Data...');	
+	console.log('Loading Data...');	
 	d3.csv("./data/Transformed - Population_Income.csv").then(function(data) {
 		localStorage.setItem('dataset', data)
 	});
@@ -10,6 +10,5 @@ function LoadData()
 function ShowData()
 {
 	window.alert('Output Data...');
-	// localStorage.getItem('dataset');
-	window.alert(localStorage.getItem('dataset'));
+	
 }
