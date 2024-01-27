@@ -1,1 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+	height: 1500px; /* Add some height to enable scrolling */
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.header-image {
+     position: absolute;
+     right: 10px;
+}
+
+.header-content {
+  display: flex;
+}
+
+.title-content {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	position: relative; /* has to be position relative for left to work, or you could just do margin-left: -50px; too */
+	
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0px;
+}
+
+.overview {
+   height: 100%;
+   background-color: #DBE9FA;
+}
+
+.intro {
+   height: 100%;
+   background-color: #F8F8F8;
+   margin-top: 50px;
+}
+
+h1 {
+font-size: 50px;
+font-weight: bold;
+margin-top: 0px;
+}
+
+h2 {
+font-size: 25px;
+font-weight: bold;
+margin-bottom: 2px;
+}
+
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+.bar {
+  fill: #0072BC;
+}
+text {
+  font-family: lato;
+  font-size: 10px;
+  fill: #333333;
+}
+.grid path {
+  stroke-width: 0;
+  stroke: #333333;
+}
+.grid .tick line {
+  stroke: #333333;
+  stroke-width: 0.3px;
+  stroke-opacity: 0.3;
+}
+text.chart-title {
+  font-size: 14px;
+  font-weight: bold;
+  fill:#222222
+}
+text.chart-label {
+  font-size: 10px;
+  font-weight: 400;
+  fill: #999999;
+}
+text.chart-source {
+  font-size: 8px;
+  fill: #999999;
+}
+text.copyright {
+  font-size: 8px;
+  fill: #999999;
+}
+.tooltip {
+  background-color: #ffffff;
+  font-family: lato;
+  font-size: 11px;
+  padding: 4px;
+  color: #666666;
+  border: none;
+  box-shadow: 0px 0px 3px 0px #E6E6E6;
+}
+.legend{
+  font-size: 10px;
+}
+
+
+
+
+
+
+
+.sheet-menu {
+    position: fixed;
+    top: 0;
+    left: -350px; /* Initially hidden to the left */
+    width: 350px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+}
+
+.menu-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-list li a:hover {
+    background-color: #f4f4f4;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.content {
+    margin-left: 50px; /* Adjust the margin to accommodate the menu width */
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-left: 20px;
+    }
+
+    .sheet-menu {
+        width: 100%;
+        left: -100%;
+    }
+}
 
