@@ -34,12 +34,18 @@ header {
     grid-gap: 0px;
 }
 
-.overview {
+.World {
    height: 100%;
    background-color: #DBE9FA;
 }
 
-.intro {
+.EU27 {
+   height: 100%;
+   background-color: #F8F8F8;
+   margin-top: 50px;
+}
+
+.details {
    height: 100%;
    background-color: #F8F8F8;
    margin-top: 50px;
@@ -179,4 +185,3 @@ text.copyright {
         left: -100%;
     }
 }
-
