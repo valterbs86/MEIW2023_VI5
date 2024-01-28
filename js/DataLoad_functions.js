@@ -1,4 +1,6 @@
-const reader = new FileReader()
+//Função para ler csv sem webserver
+
+/*const reader = new FileReader()
 
 function read(input) {
 	const csv = input.files[0]
@@ -31,6 +33,7 @@ function csv_To_Array(str, delimiter = ',') {
   // return the array
   console.log(arr);
 }
+*/
 
 
 function LoadData(File, ChartType, div_id)
@@ -52,20 +55,24 @@ function LoadData(File, ChartType, div_id)
 		//console.log(data);	
 		
 
-		if (ChartType === "StackedBarChart") {
+		if (ChartType === "RaceBarChart") {
+			console.log('RaceBarChart');
+			PrepareRaceBarChartData(data, div_id);
+			
+		} else if (ChartType === "StackedBarChart") {
 			
 			console.log('StackedBarChart');
-			AddStackedBarChart(data, div_id);
+			PrepareStackedBarChartData(data, div_id);
 			
 		} else if (ChartType === "BarChart") {
 			
 			console.log('BarChart');
-			AddBarChart(data, div_id);
+			PrepareBarChartData(data, div_id);
 			
 		} else if (ChartType === "GroupedColumnChart") {
 			
 			console.log('GroupedColumnChart');
-			AddGroupedColumnChart(data, div_id);
+			PrepareGroupedColumnChartData(data, div_id);
 			
 		}else {
 			console.log('Chart Type not found');	
@@ -74,7 +81,30 @@ function LoadData(File, ChartType, div_id)
 	});
 }
 
-function AddBarChart(data, div_id)
+
+function PrepareRaceBarChartData(data, div_id)
+{
+	data.forEach(item => {
+		item.Year = parseInt(item.Year); // or parseFloat(item.Year) for floating-point numbers
+	});
+	
+	data.forEach(item => {
+		item.Value = parseFloat(item.Value); // or parseFloat(item.Year) for floating-point numbers
+	});
+	
+	data = data.filter((element) => {
+		if (element.Year <= 2020) {
+			return element.Year;
+		}
+	});
+
+
+	console.log(data);
+	drawRaceBarChart(data, div_id);		
+}	
+
+
+function PrepareBarChartData(data, div_id)
 {
 
 	//console.log(barChartData);
@@ -97,7 +127,7 @@ function AddBarChart(data, div_id)
 }
 
 
-function AddStackedBarChart(data, div_id)
+function PrepareStackedBarChartData(data, div_id)
 {
 
 	//Filter only EU27
@@ -126,7 +156,7 @@ function AddStackedBarChart(data, div_id)
 		
 }
 
-function AddGroupedColumnChart(data, div_id)
+function PrepareGroupedColumnChartData(data, div_id)
 {
 	
 	console.log(data);
