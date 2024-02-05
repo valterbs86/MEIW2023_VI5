@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<head>
 		<meta charset="UTF-8">
 		<link rel="icon" type="image/jpg" href="Uab_logo.JPG">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Topico 5 VI</title>
+	
 		<script src="https://d3js.org/d3.v7.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
 		
 		<link rel="stylesheet" href="css/page_template.css">
-		<script type="text/javascript" src="js/page_template.js"></script>
-		
+		<link rel="stylesheet" href="css/charts.css">
+	
+		<script type="text/javascript" src="js/page_template.js"></script>	
 		<script type="text/javascript" src="js/DataLoad_functions.js"></script>
 		<script type="text/javascript" src="js/Plot_functions.js"></script>
-	
-	</head>
 </head>
 <body>
 		<!--Titulo-->
@@ -36,7 +37,6 @@
 				<!--<li><button onclick="openMenu()">Menu</button></li>-->
 				<li><a href="index.html">World Overview</a></li>
 				<li><a href="EU27.html">EU27 Overview</a></li>
-				<li><a href="tabular.html">Tabular Data</a></li>
 				<li><a onclick="scrollToDiv('details')">Visuals & Data interpretation</a></li>
 				<li><a onclick="scrollToDiv('methodology')">Methodology & App details</a></li>
 				<!--Botão para carregar um ficheiro-->
@@ -46,103 +46,66 @@
 		
 		<!--Print conteudo do ficheiro-->
 		<!--<div class="output"></div>-->
+		
 
 		<!--Graficos e texto-->
 		<div class="content" style="text-align:center;">			
 			<!----------------------------------------------------------------->
 			<div class="chart-area">
 				<h1>World Overview</h1>
-				<div class="RaceBar_div">
-					<!--RaceBarChart-->
-					<p style="text-align:center">Evolution of % Population under Porverty line<br />
-					<b>&#8681;</b>
-					</p>
-					<div id="RaceBar_div" title="Race Bar Chart">
-						<script>
-							LoadData("./data/Load_World_pvt_perc.csv", "RaceBarChart", "#RaceBar_div");
-						</script>
-					</div>
-				</div>
-				
-				
 				<div class="grid-container">
-					<!--GroupedColumnChart-->
-					<div class="grid-child green">
-						<p style="text-align:center">Test<br />
-						<b>&#8681;</b>
-						</p>
-						<div id="GroupedColumnChart_div" style="text-align:center">
-							<script>
-								LoadData("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/comparison/column_grouped.csv", "GroupedColumnChart", "#GroupedColumnChart_div");
-							</script>
-						</div>
-					</div>	
-				</div>
-			</div>
-			
-			<!----------------------------------------------------------------->
-			
-			<div class="chart-area">
-				<h1>EU27 Overview</h1>
-				<div class="grid-container">
-					<!--StackedBarChart-->
+					<!--Div à esq. cima -->
 					<div class="grid-child purple">
-						<p style="text-align:center">Average EU27 Male vs. Female Population (% under Porverty line)<br />
+						<p style="text-align:center">Share of % Population under Poverty line<br>
 						<b>&#8681;</b>
 						</p>
-						<div id="StackedBar_div" title="Bar Chart">
+						<div id="WorldMapChart_div" class="WorldMapChart_div">
 							<script>
-								LoadData("./data/Load_EU27_Gender_pvt_perc.csv", "StackedBarChart", "#StackedBar_div");
+								LoadData("./data/Load_WorldChart_World.csv", "WorldMapChart", "#WorldMapChart_div");
 							</script>
 						</div>
+						<p style="font-size: small; text-align:center">Escrever texto sobre o grafico:<br>
+						siaiohdoihadhsiohoaihdiosah<br>
+						ihihsdiohiohasoihosiahaosihioaho<br>
+						iphasdihasoidhasihaoishdosihaio<br />
 					</div>
-				
-					<!--BarChart-->
-					<div class="grid-child green">
-						<p style="text-align:center">Average EU27 Population (% under Porverty line)<br />
+					<!--Div à dir. cima -->
+					<div class="grid-child purple">
+						<p style="text-align:center">Trend of % Population under Poverty line<br>
 						<b>&#8681;</b>
 						</p>
-						<div id="BarChart_div" title="Bar Chart" style="text-align:center">
+						<div id="LineChart_div" class="LineChart_div">
 							<script>
-								LoadData("./data/Load_EU27_pvt_perc.csv", "BarChart", "#BarChart_div");
+								LoadData("./data/Load_LineChart_World.csv", "LineChart", "#LineChart_div");
 							</script>
 						</div>
-					</div>	
+						<p style="font-size: small; text-align:center">Escrever texto sobre o grafico:<br>
+						siaiohdoihadhsiohoaihdiosah<br>
+						ihihsdiohiohasoihosiahaosihioaho<br>
+						iphasdihasoidhasihaoishdosihaio<br />
+					</div>					
 				</div>
 			</div>
 			
+			
 			<!----------------------------------------------------------------->
 			
-			<div class="details">
+			<div id="include_details" class="details">
 				<h1>Visuals & Data interpretation</h1>	
 				<div class="grid-container">
 					<div style="border-right: solid;">
 						<h3>Data collection / preparation</h3>
-						"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+						<div style="text-align:left; margin-right: 20px;">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</div>
 					</div>
 					<div>
 						<h3>Details</h3>
-						"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+						<div style="text-align:left; margin-left: 20px;">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</div>
 					</div>
 				</div>
 			</div>			
 			
-			
-			<div class="methodology">
-				<h1>Methodology & App</h1>	
-				<div class="grid-container">
-					<div style="border-right: solid;">
-						<h3>Data collection / preparation</h3>
-						"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-					</div>
-					<div>
-						<h3>Details</h3>
-						"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-					</div>
-				</div>
-			</div>
-	
-			
+			<div id="include_methodology" class="methodology">
+			</div>			
 			
 		</div>
 
