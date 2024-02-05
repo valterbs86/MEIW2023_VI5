@@ -1,0 +1,110 @@
+svg {
+    font-family: Sans-Serif, Arial;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+	margin-bottom: 0px;
+	font-size: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+	margin-top: 10px;
+    margin-right: 5px;
+}
+
+.legend-item span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+
+/* Line chart */
+.lines {
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis {
+  font-size: 14px;
+}
+
+.axis path {
+  stroke: black;
+  stroke-width: 2;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.title-text {
+  font-size: 20px;
+  background-color: black;
+}
+
+/*Map*/
+    path {
+      stroke: #fff;
+      stroke-width: 0.5;
+      transition: stroke 0.3s, opacity 0.3s;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      opacity: 0;
+    }
+
+
+/* Sun chart */
+#sidebar {
+  float: left;
+  width: 100px;
+}
+
+#sequence {
+  width: 600px;
+  height: 70px;
+}
+
+#legend {
+  padding: 10px 0 0 3px;
+}
+
+#sequence text, #legend text {
+  font-weight: 600;
+  fill: #fff;
+}
+
+#chart {
+  position: relative;
+}
+
+#chart path {
+  stroke: #fff;
+}
+
+#explanation {
+  position: absolute;
+  top: 260px;
+  left: 305px;
+  width: 140px;
+  text-align: center;
+  color: #666;
+  z-index: -1;
+}
+
+#percentage {
+  font-size: 2.5em;
+}

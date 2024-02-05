@@ -99,6 +99,10 @@ margin-bottom: 2px;
 }
 
 
-.RaceBar_div{
-	border: dashed black;
+.WorldMapChart_div{
+	/*border: dashed black;*/
+}
+
+.LineChart_div {
+	/*border: dashed black;*/
 }
