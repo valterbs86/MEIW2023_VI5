@@ -55,24 +55,39 @@ function LoadData(File, ChartType, div_id)
 		//console.log(data);	
 		
 
-		if (ChartType === "RaceBarChart") {
+		if (ChartType === "LineChart") {
+			
+			console.log('LineChart');
+			PrepareLineChartData(data, div_id);
+			
+		} 
+		if (ChartType === "WorldMapChart") {
+			
+			console.log('WorldMapChart');
+			PrepareMapChartData(File, div_id);
+			
+		} else if (ChartType === "SunBurstChart") {
+			console.log('SunBurstChart');
+			PrepareSunBurstChartData(data, div_id);		
+			
+		} else if (ChartType === "RaceBarChart") {
 			console.log('RaceBarChart');
-			PrepareRaceBarChartData(data, div_id);
+			//PrepareRaceBarChartData(data, div_id);
 			
 		} else if (ChartType === "StackedBarChart") {
 			
 			console.log('StackedBarChart');
-			PrepareStackedBarChartData(data, div_id);
+			//PrepareStackedBarChartData(data, div_id);
 			
 		} else if (ChartType === "BarChart") {
 			
 			console.log('BarChart');
-			PrepareBarChartData(data, div_id);
+			//PrepareBarChartData(data, div_id);
 			
 		} else if (ChartType === "GroupedColumnChart") {
 			
 			console.log('GroupedColumnChart');
-			PrepareGroupedColumnChartData(data, div_id);
+			//PrepareGroupedColumnChartData(data, div_id);
 			
 		}else {
 			console.log('Chart Type not found');	
@@ -81,110 +96,29 @@ function LoadData(File, ChartType, div_id)
 	});
 }
 
-
-function PrepareRaceBarChartData(data, div_id)
-{
-	data.forEach(item => {
-		item.Year = parseInt(item.Year); // or parseFloat(item.Year) for floating-point numbers
-	});
-	
-	data.forEach(item => {
-		item.Value = parseFloat(item.Value); // or parseFloat(item.Year) for floating-point numbers
-	});
-	
-	data = data.filter((element) => {
-		if (element.Year <= 2020) {
-			return element.Year;
-		}
-	});
-
-
-	console.log(data);
-	drawRaceBarChart(data, div_id);		
-}	
-
-
-function PrepareBarChartData(data, div_id)
-{
-
-	//console.log(barChartData);
-
-	//Get only the desired fields
-	barChartData = Object.keys(data).map(element => ({
-            Year: data[element]['Year'],
-			Value: data[element]['% of Population under Poverty Line']
-			//,Region: data[element]['Region']
-        }));
-		
-	
-	//Sort Data by Year
-	barChartData = barChartData.sort((a, b) => {return a.Year - b.Year;});
-	//console.log('Remove columns and sort');	
-	console.log(barChartData);
-	
-	drawBarChart(barChartData, div_id);
-		
-}
-
-
-function PrepareStackedBarChartData(data, div_id)
-{
-
-	//Filter only EU27
-	barChartData = data.filter((element) => {
-			return element.Region = 'EU27';
-	});
-	
-	//console.log('Filter only EU27...');	
-	//console.log(barChartData);
-
-	//Get only the desired fields
-	barChartData = Object.keys(barChartData).map(element => ({
-            Year: data[element]['Year'],
-			Female: data[element]['Population under Poverty Line % Female'],
-			Male: data[element]['Population under Poverty Line % Male']
-			//,Region: data[element]['Region']
-        }));
-		
-	
-	//Sort Data by Year
-	barChartData = barChartData.sort((a, b) => {return a.Year - b.Year;});
-	//console.log('Remove columns and sort');	
-	console.log(barChartData);
-	
-	drawStackedBarChart(barChartData, div_id);
-		
-}
-
-function PrepareGroupedColumnChartData(data, div_id)
+function PrepareLineChartData(data, div_id)
 {
 	
 	console.log(data);
 	
-	drawGroupedChart(data, div_id);
+	var parseYear = d3.timeParse("%Y");
 		
-}	
-		
-
-function PopulateDiv(data, div_id)
-{
-	//window.alert(JSON.parse(localStorage.getItem('dataset')));
-	let options = [...new Set(data.map(d => d.MaxYear).sort())]; 
+	data.forEach(item => {
+		item.Year = parseYear(item.Year); // or parseFloat(item.Year) for floating-point numbers
+		item.Avg_Share_of_pop = +item.Avg_Share_of_pop;
+		item.Avg_Share_of_pop = parseFloat(item.Avg_Share_of_pop).toFixed(2);
+	});
 	
-	//
-	//let options2 = options.filter(d => d.MaxYear = 2016);
-		// optionally add .sort() to the end of that line to sort the unique values
-		// alphabetically rather than by insertion order
+	drawLineChart(data, div_id);		
+}	
 
-		d3.select('#my_dataviz')
-  			.selectAll('option')
-    		.data(filtered_options)
-  			.enter()
-    		.append('option')
-    		.text(d => d)
-    		.attr('value', d => d);
 
-}
+function PrepareMapChartData(file, div_id)
+{
+	console.log(file);
+	drawMapChart(file, div_id);		
+}	
+
 
 
 
