@@ -20,3 +20,11 @@ function scrollToDiv(div) {
 		targetDiv.scrollIntoView({ behavior: 'smooth' });
 		
 }
+
+$(function() {
+  $("#include_methodology").load("methodology.html");
+});
+
+$(function() {
+  $("#include_menu").load("menu.html");
+});
