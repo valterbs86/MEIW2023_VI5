@@ -87,7 +87,7 @@ function drawMapChart(file, div) {
         // Set up color scale based on the data values
         const colorScale = d3.scaleThreshold()
             .domain([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100])
-            .range(d3.range(0, 1.01, 1 / 11).map(d3.interpolateRgbBasis(d3.schemeReds[9])));
+            .range(d3.range(0, 1.01, 1 / 11).map(d3.interpolateRgbBasis(d3.schemeOranges[9])));
 
         // Draw the countries
         svg.selectAll("path")
@@ -137,10 +137,12 @@ function drawMapChart(file, div) {
             .enter().append("g")
             .attr("transform", (d, i) => `translate(0, ${i * 25})`);
 
-        legend.append("rect")
+         legend.append("rect")
             .attr("width", 20)
             .attr("height", 20)
-            .attr("fill", d => d);
+            .attr("fill", d => d)
+			.attr("stroke", "black") // Add border color
+			.attr("stroke-width", 1); // Add border width
 
         legend.append("text")
             .attr("x", 30)

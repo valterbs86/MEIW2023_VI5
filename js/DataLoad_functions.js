@@ -71,6 +71,11 @@ function LoadData(File, ChartType, div_id)
 			console.log('RaceBarChart');
 			PrepareRaceBarChartData(data, div_id);
 			
+		} else if (ChartType === "LolipopChart") {
+			
+			console.log('LolipopChart');
+			PrepareLolipopChartData(data, div_id);
+			
 		} else {
 			console.log('Chart Type not found');	
 		}
@@ -123,3 +128,9 @@ function PrepareRaceBarChartData(data, div_id)
 	drawRaceBarChart(data, div_id);		
 }	
 
+function PrepareLolipopChartData(data, div_id)
+{
+	
+	console.log(data);
+	drawLolipopChart(data, div_id);		
+}	

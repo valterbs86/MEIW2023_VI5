@@ -1,9 +1,9 @@
 function drawMapChart(file, div) {
 	
-	       // Add text box for displaying current year
-        const yearTextbox = d3.select(div).append("div")
-            .attr("class", "year-textbox")
-            .text("Year: 2021");
+	 // Add text box for displaying current year
+     const yearTextbox = d3.select(div).append("div")
+         .attr("class", "year-textbox")
+         .text("Year: 2021");
 	
     // Set up the tooltip div
     const tooltip = d3.select("body").append("div")
@@ -21,8 +21,8 @@ function drawMapChart(file, div) {
 
     // Define the projection
     const projection = d3.geoNaturalEarth1()
-        .scale(400)
-        .translate([width / 2, height / 2 + 350]);
+        .scale(600)
+        .translate([width / 2-80, height / 2 + 530]);
 
     // Create a path generator
     const path = d3.geoPath().projection(projection);
@@ -32,6 +32,7 @@ function drawMapChart(file, div) {
         d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
         d3.csv(file) // Use the provided file parameter
     ]).then(function(data) {
+		
         const world = data[0];
         let csvData = data[1];
 
@@ -76,8 +77,7 @@ function drawMapChart(file, div) {
                 });
 
             // Update the year text box
-            yearTextbox
-			.text(`Year: ${year}`)
+            yearTextbox.text(`Year: ${year}`)
 			;
         }
 
@@ -87,7 +87,7 @@ function drawMapChart(file, div) {
         // Set up color scale based on the data values
         const colorScale = d3.scaleThreshold()
             .domain([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100])
-            .range(d3.range(0, 1.01, 1 / 11).map(d3.interpolateRgbBasis(d3.schemeReds[9])));
+            .range(d3.range(0, 1.01, 1 / 11).map(d3.interpolateRgbBasis(d3.schemeOranges[9])));
 
         // Draw the countries
         svg.selectAll("path")
@@ -97,7 +97,7 @@ function drawMapChart(file, div) {
             .attr("fill", d => colorScale(dataMap.get(d.id) || 0));
 
 
-   // Update tooltip content based on the current year
+			// Update tooltip content based on the current year
             svg.selectAll("path")
                 .on("mouseover", function(event, d) {
                     // Apply effect on mouseover
@@ -140,7 +140,9 @@ function drawMapChart(file, div) {
         legend.append("rect")
             .attr("width", 20)
             .attr("height", 20)
-            .attr("fill", d => d);
+            .attr("fill", d => d)
+			.attr("stroke", "black") // Add border color
+			.attr("stroke-width", 1); // Add border width
 
         legend.append("text")
             .attr("x", 30)
@@ -319,4 +321,181 @@ function drawRaceBarChart(data, div_id) {
 			update(nextYear);
 		}
 	}, 1000);	
+}
+
+
+function drawLolipopChart(data, div) {
+	
+	     const yearTextbox = d3.select(div).append("div")
+         .attr("class", "year-textbox")
+         .text("Year: 2021");
+		 
+    // Set the dimensions and margins of the graph
+    var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 800 - margin.left - margin.right,
+        height = 460 - margin.top - margin.bottom;
+
+    // Append the SVG object to the body of the page
+    var svg = d3.select(div)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Y axis
+    var y = d3.scaleLinear()
+        .domain([d3.min(data, function(d) { return Math.max(d.Women, d.Men, d.Total); })-8, d3.max(data, function(d) { return Math.max(d.Women, d.Men, d.Total); })])
+        .range([height, 0]);
+    svg.append("g")
+		.attr("class", "axis") // Add class for y-axis
+        .call(d3.axisLeft(y));
+
+    // X axis
+    var x = d3.scaleBand()
+        .range([0, width])
+        .domain(data.map(function(d) { return d.ISO2; }))
+        .padding(1);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+		.attr("class", "axis") // Add class for y-axis
+        .call(d3.axisBottom(x));
+
+    // Lines
+    svg.selectAll(".myline")
+        .data(data)
+        .enter()
+        .append("line")
+        .attr("class", "myline")
+        .attr("x1", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+        .attr("x2", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+        .attr("y1", function(d) { return y(d.Women); })
+        .attr("y2", function(d) { return y(d.Men); })
+        .attr("stroke", "grey")
+        .attr("stroke-width", "1px");
+
+    // Additional line to connect Total circle to the main line
+    svg.selectAll(".myline2")
+        .data(data)
+        .enter()
+        .append("line")
+        .attr("class", "myline")
+        .attr("x1", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+        .attr("x2", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+        .attr("y1", function(d) { return y(Math.min(d.Women, d.Men, d.Total)); }) // Adjusted y-coordinate
+        .attr("y2", function(d) { return y(Math.max(d.Women, d.Men, d.Total)); }) // Adjusted y-coordinate
+        .attr("stroke", "grey")
+        .attr("stroke-width", "1px");
+
+    // Circles of variable 1 (Women)
+    svg.selectAll(".mycircle1")
+        .data(data)
+        .enter()
+        .append("image")
+        .attr("class", "mycircle1")
+        .attr("xlink:href", "./women_image.png") 
+        .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
+        .attr("y", function(d) { return y(d.Women) - 8; }) // Adjust positioning
+        .attr("width", 20) // Adjust size
+        .attr("height", 20) // Adjust size
+		.each(function(d) {
+			var Women = typeof d.Women !== 'undefined' ? parseFloat(d.Women).toFixed(2) : 'N/A';
+			// Mouseover event handler
+			d3.select(this)
+				.on("mouseover", function() {
+					// Tooltip on mouseover
+					tooltip.transition()
+						.duration(200)
+						.style("opacity", .9);
+					tooltip.html("Women: " + Women+'%')
+						.style("left", (event.pageX) + "px")
+						.style("top", (event.pageY) + "px");
+				})
+				.on("mouseout", function() {
+					// Hide tooltip on mouseout
+					tooltip.transition()
+						.duration(500)
+						.style("opacity", 0);
+				});
+		});
+		
+
+
+    // Circles of variable 2 (Men)
+    svg.selectAll(".mycircle2")
+        .data(data)
+        .enter()
+        .append("image")
+        .attr("class", "mycircle2")
+        .attr("xlink:href", "./men_image.png")
+        .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
+        .attr("y", function(d) { return y(d.Men) - 8; }) 						// Adjust positioning
+        .attr("width", 20) // Adjust size
+        .attr("height", 20) // Adjust size
+		.each(function(d) {
+			var Men = typeof d.Men !== 'undefined' ? parseFloat(d.Men).toFixed(2) : 'N/A';
+			// Mouseover event handler
+			d3.select(this)
+				.on("mouseover", function() {
+					// Tooltip on mouseover
+					tooltip.transition()
+						.duration(200)
+						.style("opacity", .9);
+					tooltip.html("Men: " + Men+'%')
+						.style("left", (event.pageX) + "px")
+						.style("top", (event.pageY) + "px");
+				})
+				.on("mouseout", function() {
+					// Hide tooltip on mouseout
+					tooltip.transition()
+						.duration(500)
+						.style("opacity", 0);
+				});
+		});
+
+// Circles of variable 3 (Total)
+svg.selectAll(".mycircle3")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("class", "mycircle3")
+    .attr("cx", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+    .attr("cy", function(d) { return y(d.Total); })
+    .attr("r", "6")
+    .style("fill", "#ff7f0e")
+    .each(function(d) {
+        var total = typeof d.Total !== 'undefined' ? parseFloat(d.Total).toFixed(2) : 'N/A';
+        // Mouseover event handler
+        d3.select(this)
+            .on("mouseover", function() {
+                // Tooltip on mouseover
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html("Total: " + total+'%')
+                    .style("left", (event.pageX) + "px")
+                    .style("top", (event.pageY) + "px");
+            })
+            .on("mouseout", function() {
+                // Hide tooltip on mouseout
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+    });
+		
+		
+		
+    // Tooltip
+    var tooltip = d3.select(div)
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "1px")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("position", "absolute");
+
 }
