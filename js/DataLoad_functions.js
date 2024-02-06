@@ -66,30 +66,12 @@ function LoadData(File, ChartType, div_id)
 			console.log('WorldMapChart');
 			PrepareMapChartData(File, div_id);
 			
-		} else if (ChartType === "SunBurstChart") {
-			console.log('SunBurstChart');
-			PrepareSunBurstChartData(data, div_id);		
-			
 		} else if (ChartType === "RaceBarChart") {
+			
 			console.log('RaceBarChart');
-			//PrepareRaceBarChartData(data, div_id);
+			PrepareRaceBarChartData(data, div_id);
 			
-		} else if (ChartType === "StackedBarChart") {
-			
-			console.log('StackedBarChart');
-			//PrepareStackedBarChartData(data, div_id);
-			
-		} else if (ChartType === "BarChart") {
-			
-			console.log('BarChart');
-			//PrepareBarChartData(data, div_id);
-			
-		} else if (ChartType === "GroupedColumnChart") {
-			
-			console.log('GroupedColumnChart');
-			//PrepareGroupedColumnChartData(data, div_id);
-			
-		}else {
+		} else {
 			console.log('Chart Type not found');	
 		}
 		
@@ -112,13 +94,32 @@ function PrepareLineChartData(data, div_id)
 	drawLineChart(data, div_id);		
 }	
 
-
 function PrepareMapChartData(file, div_id)
 {
 	console.log(file);
-	drawMapChart(file, div_id);		
+	drawMapChart(file, div_id);	
+	
 }	
 
 
+function PrepareRaceBarChartData(data, div_id)
+{
+	data.forEach(item => {
+		item.Year = parseInt(item.Year); // or parseFloat(item.Year) for floating-point numbers
+	});
+	
+	data.forEach(item => {
+		item.Value = parseFloat(item.Value).toFixed(2); // or parseFloat(item.Year) for floating-point numbers
+	});
+	
+	data = data.filter((element) => {
+		if (element.Year <= 2020) {
+			return element.Year;
+		}
+	});
 
+
+	console.log(data);
+	drawRaceBarChart(data, div_id);		
+}	
 
