@@ -55,7 +55,7 @@
 				<div class="grid-container">
 					<!--Div à esq. cima -->
 					<div class="grid-child purple">
-						<p style="text-align:center">Share of % Population under Poverty line<br>
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Share % of Population under Poverty line<br>
 						<b>&#8681;</b>
 						</p>
 						<div id="WorldMapChart_div" class="WorldMapChart_div">
@@ -70,7 +70,7 @@
 					</div>
 					<!--Div à dir. cima -->
 					<div class="grid-child purple">
-						<p style="text-align:center">Change of % Population under Poverty line from 2000 onwards<br>
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Change of % Population under Poverty line from 2000 onwards<br>
 						<b>&#8681;</b>
 						</p>
 						<div id="RaceBar_div" class="RaceBar_div">
@@ -82,7 +82,23 @@
 						siaiohdoihadhsiohoaihdiosah<br>
 						ihihsdiohiohasoihosiahaosihioaho<br>
 						iphasdihasoidhasihaoishdosihaio<br />
-					</div>					
+					</div>	
+					<div class="grid-child purple">
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Poverty incidence over Female vs. Male Population<br>
+						<b>&#8681;</b>
+						</p>
+						<div id="LoliPopChart_div" class="LoliPopChart_div">
+							<script>
+								LoadData("./data/Load_LollipopChart_EU27.csv", "LolipopChart", "#LoliPopChart_div");
+							</script>
+						</div>
+					</div>
+				<div class="grid-child purple">
+					<p style="text-align:center; font-size:22px;font-weight:bold;">Contribution of each Country to the Total Nr. of people living under the Proverty Line<br><p style="font-weight:bold; font-size:18px;">Year: 2021</p>
+					<b>&#8681;</b>
+					</p>
+					<img src="./TreeMap_EU27.PNG" width="1440" height="632"><br>
+				</div>
 				</div>
 			</div>
 			
