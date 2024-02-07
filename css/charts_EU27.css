@@ -32,6 +32,7 @@ svg {
     width: 120px;
     height: 40px;
     margin: 0 auto; /* Center horizontally */
+	margin-top: 20px;
     display: flex;
 	justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
