@@ -1,0 +1,53 @@
+svg {
+    font-family: Sans-Serif, Arial;
+}
+
+
+
+/*Map*/
+    path {
+      stroke: #fff;
+      stroke-width: 0.5;
+      transition: stroke 0.3s, opacity 0.3s;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      opacity: 0;
+    }
+
+
+.Play_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    height: 40px;
+    margin: 0 auto; /* Center horizontally */
+	margin-top: 20px;
+    display: flex;
+	justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.Play_button:hover {
+        background-color: #45a049;
+}
+
+.year-textbox {
+        font-size: 18px;
+		font-weight: bold;
+}
+
+ .axis text {
+     font-weight: bold;
+	 font-size: 12px;
+ }
