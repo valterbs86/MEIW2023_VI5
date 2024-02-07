@@ -90,6 +90,16 @@ margin-bottom: 2px;
    height: 100%;
    background-color: #F8F8F8;
    margin-top: 50px;
+   margin-bottom: 50px;
+   border-bottom: dashed black;
+}
+
+.methodology {
+   height: 100%;
+   background-color: #F8F8F8;
+   margin-top: 50px;
+   margin-bottom: 50px;
+   border-bottom: dashed black;
 }
 
 .intro {
