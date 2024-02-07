@@ -116,12 +116,6 @@ function PrepareRaceBarChartData(data, div_id)
 	data.forEach(item => {
 		item.Value = parseFloat(item.Value).toFixed(2); // or parseFloat(item.Year) for floating-point numbers
 	});
-	
-	data = data.filter((element) => {
-		if (element.Year <= 2020) {
-			return element.Year;
-		}
-	});
 
 
 	console.log(data);

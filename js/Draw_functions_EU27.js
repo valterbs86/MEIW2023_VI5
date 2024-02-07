@@ -203,6 +203,8 @@ function drawMapChart(file, div) {
 
 function drawRaceBarChart(data, div_id) {
 	
+	console.log(data);
+	
 	// Extract unique Countries
 	const countries = Array.from(new Set(data.map(d => d.Country)));
 	
@@ -312,6 +314,8 @@ function drawRaceBarChart(data, div_id) {
 	
 	// Initial update with the first year of data
 	update(2000);
+	
+	console.log(d3.max(data, d => d.Year));
 	
 	// Automatic year change every second
 	setInterval(() => {

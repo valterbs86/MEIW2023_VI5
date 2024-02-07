@@ -210,7 +210,7 @@ function drawLineChart(csvData, div_id) {
 	
 	var width = 600;
 	var height = 350;
-	const margin = {top: 20, right: 50, bottom: 0, left: 0};
+	const margin = {top: 20, right: 100, bottom: 0, left: 0};
 	var duration = 250;
 
 	var lineOpacity = "0.25";
