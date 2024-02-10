@@ -1,40 +1,10 @@
-//Função para ler csv sem webserver
-
-/*const reader = new FileReader()
-
-function read(input) {
-	const csv = input.files[0]
-	reader.readAsText(csv)
-}
-
-reader.onload = function (e) {
-	csv_To_Array(e.target.result);
-	// return the array
-	document.querySelector('.output').innerText = e.target.result;
-	document.querySelector('.output').style.marginTop = "50px";
-	document.querySelector('.output').style.marginLeft = "50px";
-	document.querySelector('.output').style.border = "thick solid #0000FF";
-	
-}
-
-
-function csv_To_Array(str, delimiter = ',') {
-  const header_cols = str.slice(0, str.indexOf('\n')).split(delimiter);
-  const row_data = str.slice(str.indexOf('\n') + 1).split('\n');
-  const arr = row_data.map(function(row) {
-    const values = row.split(delimiter);
-    const el = header_cols.reduce(function(object, header, index) {
-      object[header] = values[index];
-      return object;
-    }, {});
-    return el;
-  });
-  
-  // return the array
-  console.log(arr);
-}
+/*
+Mestrado em Engenharia Informática e Tecnologia Web
+Visualização de Informação
+Projeto Final
+Grupo: Claudia Pires (1303334) / Valter Bastos (2302612)
+Ficheiro JS
 */
-
 
 function LoadData(File, ChartType, div_id)
 {

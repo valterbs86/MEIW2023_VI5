@@ -1,3 +1,11 @@
+/*
+Mestrado em Engenharia Informática e Tecnologia Web
+Visualização de Informação
+Projeto Final
+Grupo: Claudia Pires (1303334) / Valter Bastos (2302612)
+Ficheiro JS
+*/  
+
 function drawMapChart(file, div) {
 	
 	 // Add text box for displaying current year
@@ -397,13 +405,14 @@ function drawLolipopChart(data, div) {
         .enter()
         .append("image")
         .attr("class", "mycircle1")
-        .attr("xlink:href", "./women_image.png") 
+        .attr("xlink:href", "./assets/women_image.png") 
         .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
         .attr("y", function(d) { return y(d.Women) - 8; }) // Adjust positioning
         .attr("width", 20) // Adjust size
         .attr("height", 20) // Adjust size
 		.each(function(d) {
 			var Women = typeof d.Women !== 'undefined' ? parseFloat(d.Women).toFixed(2) : 'N/A';
+			var popwomen = typeof d.PopWomen !== 'undefined' ? parseInt(d.PopWomen) : 'N/A';
 			// Mouseover event handler
 			d3.select(this)
 				.on("mouseover", function() {
@@ -411,7 +420,7 @@ function drawLolipopChart(data, div) {
 					tooltip.transition()
 						.duration(200)
 						.style("opacity", .9);
-					tooltip.html("Women: " + Women+'%')
+					tooltip.html("Women in Poverty (%): " + Women+'<br><br>'+'Female Population (headcount): ' + popwomen)
 						.style("left", (event.pageX) + "px")
 						.style("top", (event.pageY) + "px");
 				})
@@ -431,13 +440,14 @@ function drawLolipopChart(data, div) {
         .enter()
         .append("image")
         .attr("class", "mycircle2")
-        .attr("xlink:href", "./men_image.png")
+        .attr("xlink:href", "./assets/men_image.png")
         .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
         .attr("y", function(d) { return y(d.Men) - 8; }) 						// Adjust positioning
         .attr("width", 20) // Adjust size
         .attr("height", 20) // Adjust size
 		.each(function(d) {
 			var Men = typeof d.Men !== 'undefined' ? parseFloat(d.Men).toFixed(2) : 'N/A';
+			var popmen = typeof d.PopMen !== 'undefined' ? parseInt(d.PopMen) : 'N/A';
 			// Mouseover event handler
 			d3.select(this)
 				.on("mouseover", function() {
@@ -445,7 +455,7 @@ function drawLolipopChart(data, div) {
 					tooltip.transition()
 						.duration(200)
 						.style("opacity", .9);
-					tooltip.html("Men: " + Men+'%')
+					tooltip.html("Men in Poverty (%): " + Men+'<br><br>'+'Male Population (headcount): ' + popmen)
 						.style("left", (event.pageX) + "px")
 						.style("top", (event.pageY) + "px");
 				})
@@ -469,6 +479,7 @@ svg.selectAll(".mycircle3")
     .style("fill", "#ff7f0e")
     .each(function(d) {
         var total = typeof d.Total !== 'undefined' ? parseFloat(d.Total).toFixed(2) : 'N/A';
+		var poptotal = typeof d.PopTotal !== 'undefined' ? parseInt(d.PopTotal) : 'N/A';
         // Mouseover event handler
         d3.select(this)
             .on("mouseover", function() {
@@ -476,7 +487,7 @@ svg.selectAll(".mycircle3")
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                tooltip.html("Total: " + total+'%')
+                tooltip.html("Total Poverty (%): " + total+'<br><br>'+'Total Population (headcount): ' + poptotal)
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px");
             })

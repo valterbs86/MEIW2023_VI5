@@ -1,3 +1,11 @@
+/*
+Mestrado em Engenharia Informática e Tecnologia Web
+Visualização de Informação
+Projeto Final
+Grupo: Claudia Pires (1303334) / Valter Bastos (2302612)
+Ficheiro JS
+*/
+
 window.onscroll = function() {slideMenu()};
 
 var header = document.getElementById("myMenu");
@@ -28,9 +36,5 @@ function scrollToDiv(div) {
 }
 
 $(function() {
-  $("#include_methodology").load("methodology.html");
-});
-
-$(function() {
-  $("#include_menu").load("menu.html");
+  $("#include_WorldOverView").load("WorldOverview.html");
 });
