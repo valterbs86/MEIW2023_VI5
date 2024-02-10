@@ -1,8 +1,15 @@
+<!--
+Mestrado em Engenharia Informática e Tecnologia Web
+Visualização de Informação
+Projeto Final
+Grupo: Claudia Pires (1303334) / Valter Bastos (2302612)
+Ficheiro HTML
+-->	
 <!DOCTYPE html>
 <html>
 <head>
 		<meta charset="UTF-8">
-		<link rel="icon" type="image/jpg" href="Uab_logo.JPG">
+		<link rel="icon" type="image/jpg" href="./assets/Uab_logo.JPG">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Topico 5 VI</title>
 		<script src="https://d3js.org/d3.v7.min.js"></script>
@@ -20,12 +27,10 @@
 <body>
 		<!--Titulo-->
 		<div class="title-container">
-			<img class="header-image" src="Uab_logo.JPG">
+			<img class="header-image" src="./assets/Uab_logo.JPG">
 			<div class="title-content">
 				<h1>World Poverty</h1>
-				<h2>MEIW 2023 - VI</h2>
-				<!--<p>
-				<button onclick="openMenu()">Click for Navigation Options</button>-->
+				<h2>MEIW 2023/24 - VI</h2>
 			</div>
 		</div>
 		
@@ -33,19 +38,11 @@
 		<div class="menu" id="myMenu">
 			<script type="text/javascript" src="js/page_template.js"></script>
 			<ul class="menu-list">
-				<!--<li><button onclick="openMenu()">Menu</button></li>-->
 				<li><a href="index.html">World Overview</a></li>
 				<li><a href="EU27.html">EU27 Overview</a></li>
-				<li><a onclick="scrollToDiv('details')">Visuals & Data interpretation</a></li>
-				<li><a onclick="scrollToDiv('methodology')">Methodology & App details</a></li>
-				<!--Botão para carregar um ficheiro-->
-				<!--<li><input type="file" onchange=read(this) accept=".csv"></li>-->
+				<li><a href="methodology.html">Methodology</a></li>
 			</ul>
 		</div>
-		
-		<!--Print conteudo do ficheiro-->
-		<!--<div class="output"></div>-->
-		
 
 		<!--Graficos e texto-->
 		<div class="content" style="text-align:center;">			
@@ -67,12 +64,7 @@
 						<div class="chart_desc">
 							<p style="font-weight: bold;">Chart description:</p>
 							<u>Choropleth Europe map</u> showing the prevalence of poverty (share of population) in EU27 Member States.<br>
-							Not only this chart allows for a country by country insight but also enhances a geographical analysis indicating which regions are mostly affected by poverty.<br>
-							Countries with higher Share (%) of Population living under the Poverty line are represented with darker color.<br>
-							Hovering the countries with the mouse shows the value in each year.<br>
-							<br>
 							Clicking the play button will show the evolution along the years from 2000 until 2021.<br><br>
-							(Initially we wanted to control the year animation for both the Map and the RaceBar chart with the same Play button. Unfortunately we were not able to overtake some technical chalenges.)<br>
 							<p>							
 						</div>
 						
@@ -90,28 +82,13 @@
 						
 						<div class="chart_desc">
 							<p style="font-weight: bold;">Chart description:</p>
-							<u>RaceBar Chart</u> showing the evolution of poverty prevalence (share of population) in EU27 Member States along the Years.<br>
-							The bars are sorted descending by Countries with higher prevalence .<br>
-							The Year starts automatically iterating when the page is opened, starting from 2000 until 2021.<br>
+							<u>RaceBar Chart</u> showing the evolution of poverty prevalence (share of population) in EU27 Member States along the Years from 2000 until 2021.<br>
 							<p>							
 						</div>
 					
 					</div>	
-				<div class="grid-child purple">
-					<p style="text-align:center; font-size:22px;font-weight:bold;">Poverty on Gender and Population Head Count<br>
-					<b>&#8681;</b>
-					</p>
-					<img src="./BarLine_EU27.PNG" width="900" height="562"><br>
-					
-					<div class="chart_desc">
-						<p style="font-weight: bold;">Chart description:</p>
-						<u>Combo Chart</u> with the bars showing the EU27 absolute Head Count of population living under the Poverty Line for both genders and a line for Total Head count under the Poverty line.<br>
-						Showing the evolution along the years from 2000 until 2021.<br>	
-						<p>													
-					</div>
-				</div>
 					<div class="grid-child purple">
-						<p style="text-align:center; font-size:22px;font-weight:bold;">Poverty over Female vs. Male Population<br>
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Share of Female vs. Male Population in Poverty<br>
 						<b>&#8681;</b>
 						</p>
 						<div id="LoliPopChart_div" class="LoliPopChart_div">
@@ -123,16 +100,32 @@
 						<div class="chart_desc">
 							<p style="font-weight: bold;">Chart description:</p>
 							<u>Lollipop Chart</u> comparing Share of poverty in Female population vs Male Population.<br>
-							Cross sectional data for Year 2021 for all EU27 Member States (except Greece as there was no data available).<br>
+							Cross sectional data for Year 2021.<br>	
 							<p>
-						</div>	
+						</div>
+					</div>					
+					
+					<div class="grid-child purple">
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Poverty % Split by Age Range and Gender<br>
+						<b>&#8681;</b>
+						<p style="font-weight:bold; font-size:18px;">Year: 2021</p>
+						</p>
+						<img src="./assets/Bar_AgeSex_EU27.PNG" width="900" height="562"><br>
+						
+						<div class="chart_desc">
+							<p style="font-weight: bold;">Chart description:</p>
+							<u>Bar Chart</u> with the bars showing the EU27 Poverty % Split by Age Range and Gender.<br>
+							Cross sectional data for Year 2021.<br>
+							<p>													
+						</div>
 					</div>
 				</div>
 					<div class="grid-child purple">
-						<p style="text-align:center; font-size:22px;font-weight:bold;">Contribution of each Country to the Total Nr. of people living under the Proverty Line<br><p style="font-weight:bold; font-size:18px;">Year: 2021</p>
+						<p style="text-align:center; font-size:22px;font-weight:bold;">Contribution of each Country to the Total Nr. of people living under the Proverty Line<br>
 						<b>&#8681;</b>
+						<p style="font-weight:bold; font-size:18px;">Year: 2021</p>						
 						</p>
-						<img src="./TreeMap_EU27.PNG" width="1640" height="732"><br>
+						<img src="./assets/TreeMap_EU27.PNG" width="1640" height="732"><br>
 						
 						<div class="chart_desc">
 							<p style="font-weight: bold;">Chart description:</p>
@@ -142,18 +135,6 @@
 						</div>
 					</div>
 			</div>
-			
-			
-			<!----------------------------------------------------------------->
-			
-			<div id="include_details" class="details">
-				<h1>Visuals & Data interpretation</h1>	
-				<div style="text-align:left; margin-right: 20px; margin-left: 20px; font-size: 14px;">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</div>
-			</div>			
-			
-			<div id="include_methodology" class="methodology">
-			</div>		
-			
 		</div>
 		
 		<div id="trabalho" class="trabalho" style="text-align:right; margin-right: 20px; margin-left: 20px; font-size: 14px;">
