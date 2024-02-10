@@ -1,23 +1,30 @@
+/*
+Mestrado em Engenharia Informática e Tecnologia Web
+Visualização de Informação
+Projeto Final
+Grupo: Claudia Pires (1303334) / Valter Bastos (2302612)
+Ficheiro CSS
+*/
+
+
 svg {
     font-family: Sans-Serif, Arial;
 }
 
-
-
 /*Map*/
-    path {
-      stroke: #fff;
-      stroke-width: 0.5;
-      transition: stroke 0.3s, opacity 0.3s;
-    }
+path {
+  stroke: #fff;
+  stroke-width: 0.5;
+  transition: stroke 0.3s, opacity 0.3s;
+}
 
-    .tooltip {
-      position: absolute;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      padding: 10px;
-      opacity: 0;
-    }
+.tooltip {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  opacity: 0;
+}
 
 
 .Play_button {
