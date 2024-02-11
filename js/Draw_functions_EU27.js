@@ -514,7 +514,7 @@ function drawLolipopChart(data, div) {
     // Legend
     var legend = svg.append("g")
         .attr("class", "legend")
-        .attr("transform", "translate(" + (width - 25) + "," + (margin.top + 10) + ")");
+        .attr("transform", "translate(" + (width - 27) + "," + (margin.top + 10) + ")");
 
     legend.selectAll("rect")
         .data(legendData)
