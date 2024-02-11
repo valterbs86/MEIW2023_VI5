@@ -400,7 +400,7 @@ function drawLolipopChart(data, div) {
         .enter()
         .append("image")
         .attr("class", "mycircle1")
-        .attr("xlink:href", "./assets/women_image.jpeg") 
+        .attr("xlink:href", "./assets/women_image.png") 
         .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
         .attr("y", function(d) { return y(d.Women) - 8; }) // Adjust positioning
         .attr("width", 20) // Adjust size
@@ -433,7 +433,7 @@ function drawLolipopChart(data, div) {
         .enter()
         .append("image")
         .attr("class", "mycircle2")
-        .attr("xlink:href", "./assets/men_image.jpeg")
+        .attr("xlink:href", "./assets/men_image.png")
         .attr("x", function(d) { return x(d.ISO2) + x.bandwidth() / 2 - 8; }) // Adjust positioning
         .attr("y", function(d) { return y(d.Men) - 8; }) 						// Adjust positioning
         .attr("width", 20) // Adjust size
