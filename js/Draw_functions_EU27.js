@@ -8,8 +8,8 @@ Ficheiro JS
 
 function drawMapChart(file, div) {
 	
-	 // Add text box for displaying current year
-     const yearTextbox = d3.select(div).append("div")
+	// Add text box for displaying current year
+    const yearTextbox = d3.select(div).append("div")
          .attr("class", "year-textbox")
          .text("Year: 2021");
 	
@@ -99,41 +99,41 @@ function drawMapChart(file, div) {
 
         // Draw the countries
         svg.selectAll("path")
-            .data(world.features)
-            .enter().append("path")
-            .attr("d", path)
-            .attr("fill", d => colorScale(dataMap.get(d.id) || 0));
+			.data(world.features)
+			.enter().append("path")
+			.attr("d", path)
+			.attr("fill", d => colorScale(dataMap.get(d.id) || 0));
 
 
-			// Update tooltip content based on the current year
-            svg.selectAll("path")
-                .on("mouseover", function(event, d) {
-                    // Apply effect on mouseover
-                    d3.select(this)
-                        .style("stroke", "black")
-                        .style("opacity", 1);
+		// Update tooltip content based on the current year
+        svg.selectAll("path")
+            .on("mouseover", function(event, d) {
+                // Apply effect on mouseover
+                d3.select(this)
+                    .style("stroke", "black")
+                    .style("opacity", 1);
 
-                    // Show tooltip on mouseover with updated values
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", 0.9);
+                // Show tooltip on mouseover with updated values
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0.9);
 
-                    const population = dataMap.get(d.id);
-                    tooltip.html(`${d.properties.name}: ${population ? population.toFixed(2) + "%" : "N/A"}`)
-                        .style("left", (event.pageX + 10) + "px")
-                        .style("top", (event.pageY - 28) + "px");
-                })
-                .on("mouseout", function() {
-                    // Remove effect on mouseout
-                    d3.select(this)
-                        .style("stroke", "#fff")
-                        .style("opacity", 0.8);
+                const population = dataMap.get(d.id);
+                tooltip.html(`${d.properties.name}: ${population ? population.toFixed(2) + "%" : "N/A"}`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                // Remove effect on mouseout
+                d3.select(this)
+                    .style("stroke", "#fff")
+                    .style("opacity", 0.8);
 
-                    // Hide tooltip on mouseout
-                    tooltip.transition()
-                        .duration(500)
-                        .style("opacity", 0);
-                });
+                // Hide tooltip on mouseout
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
 
 
 
@@ -169,43 +169,43 @@ function drawMapChart(file, div) {
 
  
 
-			// Play button setup
-			let isAnimating = false; // Flag to track if animation is in progress
-			const playButton = d3.select(div).append("button")
-				.attr("class", "Play_button")
-				.text("Play Year")
-				.on("click", function() {
-					// Toggle between starting and stopping the animation
-					if (!isAnimating) {
-						// Start the animation
-						isAnimating = true;
-						playButton.text("Stop"); // Change button text to "Stop"
-						startAnimation();
-					} else {
-						// Stop the animation
-						isAnimating = false;
-						playButton.text("Play Year"); // Change button text back to "Play Year"
-					}
-				});
-			
-			// Function to start the animation
-			function startAnimation() {
-				const years = [...new Set(csvData.map(d => +d.year))];
-				let currentYearIndex = 0;
-			
-				// Start playing the animation
-				const interval = setInterval(() => {
-					if (currentYearIndex < years.length && isAnimating) {
-						const year = years[currentYearIndex];
-						updateMapForYear(year);
-						currentYearIndex++;
-					} else {
-						clearInterval(interval); // Stop when all years are processed or when animation is stopped
-						isAnimating = false; // Set flag to false
-						playButton.text("Play Year"); // Change button text back to "Play Year"
-					}
-				}, 1000); // Adjust the interval duration as needed
-			}
+		// Play button setup
+		let isAnimating = false; // Flag to track if animation is in progress
+		const playButton = d3.select(div).append("button")
+			.attr("class", "Play_button")
+			.text("Play Year")
+			.on("click", function() {
+				// Toggle between starting and stopping the animation
+				if (!isAnimating) {
+					// Start the animation
+					isAnimating = true;
+					playButton.text("Stop"); // Change button text to "Stop"
+					startAnimation();
+				} else {
+					// Stop the animation
+					isAnimating = false;
+					playButton.text("Play Year"); // Change button text back to "Play Year"
+				}
+			});
+		
+		// Function to start the animation
+		function startAnimation() {
+			const years = [...new Set(csvData.map(d => +d.year))];
+			let currentYearIndex = 0;
+		
+			// Start playing the animation
+			const interval = setInterval(() => {
+				if (currentYearIndex < years.length && isAnimating) {
+					const year = years[currentYearIndex];
+					updateMapForYear(year);
+					currentYearIndex++;
+				} else {
+					clearInterval(interval); // Stop when all years are processed or when animation is stopped
+					isAnimating = false; // Set flag to false
+					playButton.text("Play Year"); // Change button text back to "Play Year"
+				}
+			}, 1000); // Adjust the interval duration as needed
+		}
     });
 }
 
