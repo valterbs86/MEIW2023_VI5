@@ -337,11 +337,6 @@ function drawRaceBarChart(data, div_id) {
 
 
 function drawLolipopChart(data, div) {
-	
-	     const yearTextbox = d3.select(div).append("div")
-         .attr("class", "year-textbox")
-         .text("Year: 2021");
-		 
     // Set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
         width = 800 - margin.left - margin.right,
@@ -360,7 +355,7 @@ function drawLolipopChart(data, div) {
         .domain([d3.min(data, function(d) { return Math.max(d.Women, d.Men, d.Total); })-8, d3.max(data, function(d) { return Math.max(d.Women, d.Men, d.Total); })])
         .range([height, 0]);
     svg.append("g")
-		.attr("class", "axis") // Add class for y-axis
+        .attr("class", "axis") // Add class for y-axis
         .call(d3.axisLeft(y));
 
     // X axis
@@ -370,7 +365,7 @@ function drawLolipopChart(data, div) {
         .padding(1);
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-		.attr("class", "axis") // Add class for y-axis
+        .attr("class", "axis") // Add class for y-axis
         .call(d3.axisBottom(x));
 
     // Lines
@@ -410,29 +405,27 @@ function drawLolipopChart(data, div) {
         .attr("y", function(d) { return y(d.Women) - 8; }) // Adjust positioning
         .attr("width", 20) // Adjust size
         .attr("height", 20) // Adjust size
-		.each(function(d) {
-			var Women = typeof d.Women !== 'undefined' ? parseFloat(d.Women).toFixed(2) : 'N/A';
-			var popwomen = typeof d.PopWomen !== 'undefined' ? parseInt(d.PopWomen) : 'N/A';
-			// Mouseover event handler
-			d3.select(this)
-				.on("mouseover", function() {
-					// Tooltip on mouseover
-					tooltip.transition()
-						.duration(200)
-						.style("opacity", .9);
-					tooltip.html("Women in Poverty (%): " + Women+'<br><br>'+'Female Population (headcount): ' + popwomen)
-						.style("left", (event.pageX) + "px")
-						.style("top", (event.pageY) + "px");
-				})
-				.on("mouseout", function() {
-					// Hide tooltip on mouseout
-					tooltip.transition()
-						.duration(500)
-						.style("opacity", 0);
-				});
-		});
-		
-
+        .each(function(d) {
+            var Women = typeof d.Women !== 'undefined' ? parseFloat(d.Women).toFixed(2) : 'N/A';
+            var popwomen = typeof d.PopWomen !== 'undefined' ? parseInt(d.PopWomen) : 'N/A';
+            // Mouseover event handler
+            d3.select(this)
+                .on("mouseover", function() {
+                    // Tooltip on mouseover
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html("Women in Poverty (%): " + Women+'<br><br>'+'Female Population (headcount): ' + popwomen)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY) + "px");
+                })
+                .on("mouseout", function() {
+                    // Hide tooltip on mouseout
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+        });
 
     // Circles of variable 2 (Men)
     svg.selectAll(".mycircle2")
@@ -445,62 +438,60 @@ function drawLolipopChart(data, div) {
         .attr("y", function(d) { return y(d.Men) - 8; }) 						// Adjust positioning
         .attr("width", 20) // Adjust size
         .attr("height", 20) // Adjust size
-		.each(function(d) {
-			var Men = typeof d.Men !== 'undefined' ? parseFloat(d.Men).toFixed(2) : 'N/A';
-			var popmen = typeof d.PopMen !== 'undefined' ? parseInt(d.PopMen) : 'N/A';
-			// Mouseover event handler
-			d3.select(this)
-				.on("mouseover", function() {
-					// Tooltip on mouseover
-					tooltip.transition()
-						.duration(200)
-						.style("opacity", .9);
-					tooltip.html("Men in Poverty (%): " + Men+'<br><br>'+'Male Population (headcount): ' + popmen)
-						.style("left", (event.pageX) + "px")
-						.style("top", (event.pageY) + "px");
-				})
-				.on("mouseout", function() {
-					// Hide tooltip on mouseout
-					tooltip.transition()
-						.duration(500)
-						.style("opacity", 0);
-				});
-		});
+        .each(function(d) {
+            var Men = typeof d.Men !== 'undefined' ? parseFloat(d.Men).toFixed(2) : 'N/A';
+            var popmen = typeof d.PopMen !== 'undefined' ? parseInt(d.PopMen) : 'N/A';
+            // Mouseover event handler
+            d3.select(this)
+                .on("mouseover", function() {
+                    // Tooltip on mouseover
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html("Men in Poverty (%): " + Men+'<br><br>'+'Male Population (headcount): ' + popmen)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY) + "px");
+                })
+                .on("mouseout", function() {
+                    // Hide tooltip on mouseout
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+        });
 
-// Circles of variable 3 (Total)
-svg.selectAll(".mycircle3")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("class", "mycircle3")
-    .attr("cx", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
-    .attr("cy", function(d) { return y(d.Total); })
-    .attr("r", "6")
-    .style("fill", "#ff7f0e")
-    .each(function(d) {
-        var total = typeof d.Total !== 'undefined' ? parseFloat(d.Total).toFixed(2) : 'N/A';
-		var poptotal = typeof d.PopTotal !== 'undefined' ? parseInt(d.PopTotal) : 'N/A';
-        // Mouseover event handler
-        d3.select(this)
-            .on("mouseover", function() {
-                // Tooltip on mouseover
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html("Total Poverty (%): " + total+'<br><br>'+'Total Population (headcount): ' + poptotal)
-                    .style("left", (event.pageX) + "px")
-                    .style("top", (event.pageY) + "px");
-            })
-            .on("mouseout", function() {
-                // Hide tooltip on mouseout
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
-            });
-    });
-		
-		
-		
+    // Circles of variable 3 (Total)
+    svg.selectAll(".mycircle3")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("class", "mycircle3")
+        .attr("cx", function(d) { return x(d.ISO2) + x.bandwidth() / 2; })
+        .attr("cy", function(d) { return y(d.Total); })
+        .attr("r", "6")
+        .style("fill", "#ff7f0e")
+        .each(function(d) {
+            var total = typeof d.Total !== 'undefined' ? parseFloat(d.Total).toFixed(2) : 'N/A';
+            var poptotal = typeof d.PopTotal !== 'undefined' ? parseInt(d.PopTotal) : 'N/A';
+            // Mouseover event handler
+            d3.select(this)
+                .on("mouseover", function() {
+                    // Tooltip on mouseover
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html("Total Poverty (%): " + total+'<br><br>'+'Total Population (headcount): ' + poptotal)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY) + "px");
+                })
+                .on("mouseout", function() {
+                    // Hide tooltip on mouseout
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+        });
+
     // Tooltip
     var tooltip = d3.select(div)
         .append("div")
@@ -513,4 +504,33 @@ svg.selectAll(".mycircle3")
         .style("padding", "10px")
         .style("position", "absolute");
 
+    // Legend data
+    var legendData = [
+        { label: "Women", color: "#8D0104" },
+        { label: "Men", color: "#01B498" },
+        { label: "Total", color: "#FF7200" }
+    ];
+
+    // Legend
+    var legend = svg.append("g")
+        .attr("class", "legend")
+        .attr("transform", "translate(" + (width - 25) + "," + (margin.top + 10) + ")");
+
+    legend.selectAll("rect")
+        .data(legendData)
+        .enter().append("rect")
+        .attr("x", 0)
+        .attr("y", function(d, i) { return i * 20; })
+        .attr("width", 10)
+        .attr("height", 10)
+        .style("fill", function(d) { return d.color; });
+
+    legend.selectAll("text")
+        .data(legendData)
+        .enter().append("text")
+        .attr("x", 15)
+        .attr("y", function(d, i) { return i * 20 + 9; })
+        .text(function(d) { return d.label; })
+        .attr("dy", ".35em")
+        .style("font-size", "12px");
 }
